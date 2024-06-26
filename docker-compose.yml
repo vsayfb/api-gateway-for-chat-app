@@ -1,0 +1,15 @@
+services:
+  api-gateway-service:
+    container_name: api-gateway
+    build:
+      context: .
+      target: ${BUILD_TARGET:-dev}
+    volumes:
+      - ~/.m2:/root/.m2
+      - ./:/app
+    networks:
+      - ms
+
+networks:
+  ms:
+    external: true
