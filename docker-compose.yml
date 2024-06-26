@@ -9,6 +9,8 @@ services:
       - ./:/app
     networks:
       - ms
+    ports:
+      - 8080:8080
 
 networks:
   ms:
