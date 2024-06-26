@@ -12,3 +12,11 @@ spring:
             - Method=POST
           filters:
             - RewritePath=/api/auth/(?<segment>.*), /auth/${segment}
+
+        - id: rooms_api_get_requests
+          uri: http://room-service:8080
+          predicates:
+            - Path=/api/rooms/**
+            - Method=GET
+          filters:
+            - RewritePath=/api/rooms/(?<segment>.*), /rooms/${segment}
