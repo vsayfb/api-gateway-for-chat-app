@@ -21,7 +21,7 @@ public class JWTParser {
 
     private SecretKey secretKey;
 
-    public JWTParser(@Value("${jwt.base64url.encoded.secretKey}") String base64URLencodedString) {
+    public JWTParser(@Value("${jwt.base64-url.encoded.secret-key}") String base64URLencodedString) {
         setSecretKey(base64URLencodedString);
     }
 
