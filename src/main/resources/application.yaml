@@ -31,6 +31,15 @@ spring:
             - RewritePath=/api/rooms/, /rooms/
             - name: AuthenticationGateway
 
+        - id: websocket_requests
+          uri: ws://message-service:8080
+          predicates:
+            - Path=/websocket/
+            - Method=GET
+            - Upgrade=websocket
+          filters:
+            - RewritePath=/websocket/, /rooms
+
 jwt:
   base64-url:
     encoded:
