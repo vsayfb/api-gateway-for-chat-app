@@ -36,7 +36,8 @@ spring:
           predicates:
             - Path=/websocket/
             - Method=GET
-            - Upgrade=websocket
+            - Header=Upgrade, websocket
+            - Header=Connection, Upgrade
           filters:
             - RewritePath=/websocket/, /rooms
 
