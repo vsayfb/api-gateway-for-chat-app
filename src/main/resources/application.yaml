@@ -20,3 +20,13 @@ spring:
             - Method=GET
           filters:
             - RewritePath=/api/rooms/(?<segment>.*), /rooms/${segment}
+
+        - id: rooms_api_post_request
+          uri: http://room-service:8080
+          predicates:
+            - Path=/api/rooms/
+            - Method=POST
+            - Header=Authorization, ^Bearer\s.*
+          filters:
+            - RewritePath=/api/rooms/, /rooms/
+            - name: AuthenticationGateway
