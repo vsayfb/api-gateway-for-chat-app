@@ -4,6 +4,12 @@ spring:
 
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          "[/**]":
+            allowedOrigins: "*"
+            allowedMethods: "*"
+
       routes:
         - id: authentication_api
           uri: http://auth-service:8080
