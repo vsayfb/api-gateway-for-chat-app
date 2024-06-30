@@ -7,8 +7,14 @@ spring:
       globalcors:
         cors-configurations:
           "[/**]":
-            allowedOrigins: "*"
-            allowedMethods: "*"
+            allowed-methods:
+              - GET
+              - POST
+              - OPTIONS
+              - DELETE
+            allowed-headers: '*'
+            allowed-origins: '*'
+        add-to-simple-url-handler-mapping: true
 
       routes:
         - id: authentication_api
