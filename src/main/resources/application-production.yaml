@@ -1,0 +1,4 @@
+jwt:
+  base64-url:
+    encoded:
+      secret-key: ${JWT_BASE64_URL_ENCODED}
