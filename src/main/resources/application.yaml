@@ -12,8 +12,8 @@ spring:
               - POST
               - OPTIONS
               - DELETE
-            allowed-headers: '*'
-            allowed-origins: '*'
+            allowed-headers: "*"
+            allowed-origins: "*"
         add-to-simple-url-handler-mapping: true
 
       routes:
@@ -44,7 +44,7 @@ spring:
             - name: AuthenticationGateway
 
         - id: websocket_requests
-          uri: ws://message-service:8080
+          uri: http://message-service:8080
           predicates:
             - Path=/websocket/
             - Method=GET
@@ -52,6 +52,13 @@ spring:
             - Header=Connection, Upgrade
           filters:
             - RewritePath=/websocket/, /rooms
+
+        - id: discovery_api
+          uri: http://discovery-service:8761
+          predicates:
+            - Path=/api/discovery/**
+          filters:
+            - StripPrefix=2
 
 jwt:
   base64-url:
@@ -61,3 +68,10 @@ jwt:
 server:
   error:
     include-stacktrace: never
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://discovery-service:8761/eureka/
