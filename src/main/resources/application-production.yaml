@@ -2,3 +2,10 @@ jwt:
   base64-url:
     encoded:
       secret-key: ${JWT_BASE64_URL_ENCODED}
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://discovery-service:8761/eureka/

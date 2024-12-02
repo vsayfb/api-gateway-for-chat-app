@@ -56,9 +56,16 @@ spring:
         - id: discovery_api
           uri: http://discovery-service:8761
           predicates:
-            - Path=/api/discovery/**
+            - Path=/api/discovery/**, /eureka/**
           filters:
-            - StripPrefix=2
+            - RewritePath=/api/discovery/(?<segment>.*), /${segment}
+
+        - id: tracing_api
+          uri: http://tracing-service:9411
+          predicates:
+            - Path=/api/tracing/**, /zipkin/**
+          filters:
+            - RewritePath=/api/tracing/(?<segment>.*), /${segment}
 
 jwt:
   base64-url:
@@ -68,10 +75,3 @@ jwt:
 server:
   error:
     include-stacktrace: never
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    serviceUrl:
-      defaultZone: http://discovery-service:8761/eureka/
